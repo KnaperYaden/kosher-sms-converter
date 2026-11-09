@@ -2780,8 +2780,8 @@ async function parsePomZip(entries){
           if(pp._data_b64&&pp._data_b64!=='null'){
             const raw=b642ab(pp._data_b64);
             if(ct==='application/pdf'){pdfCount++;pdfSize+=raw.byteLength}
-            parts.push({ct,cl:nv(pp.cl)||nv(pp.name)||'',cid:nv(pp.cid)||'',data:raw,seq:parseInt(pp.seq)||0});
-          }else if(pp.text!=null&&pp.text!=='null'){
+            parts.push({ct,cl:nv(pp.cl)||nv(pp.name)||'',cid:nv(pp.cid)||'',_dataBlob:new Blob([raw]),seq:parseInt(pp.seq)||0});
+       }else if(pp.text!=null&&pp.text!=='null'){
             parts.push({ct:ct||'text/plain',text:ux2(pp.text),seq:parseInt(pp.seq)||0});
           }
         }
